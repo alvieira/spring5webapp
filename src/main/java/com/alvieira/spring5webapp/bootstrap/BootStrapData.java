@@ -12,7 +12,7 @@ import com.alvieira.spring5webapp.repositories.BookRepository;
 import com.alvieira.spring5webapp.repositories.PublisherRepository;
 
 @Component
-public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
+public class BootStrapData implements ApplicationListener<ContextRefreshedEvent> {
 
 	private AuthorRepository authorRepository;
 
@@ -20,7 +20,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
 	private PublisherRepository publisherRepository;
 
-	public DevBootstrap(AuthorRepository authorRepository, BookRepository bookRepository,
+	public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository,
 			PublisherRepository publisherRepository) {
 		super();
 		this.authorRepository = authorRepository;
@@ -60,6 +60,9 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
 		authorRepository.save(rod);
 		bookRepository.save(noEJB);
+		
+		System.out.println("Started in Bootstrap");
+		System.out.println("Number of books: " + bookRepository.count());
 
 	}
 
