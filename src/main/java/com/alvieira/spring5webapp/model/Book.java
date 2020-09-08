@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -23,7 +23,7 @@ public class Book {
 
 	private String isbn;
 
-	@OneToOne
+	@ManyToOne
 	private Publisher publisher;
 
 	@ManyToMany

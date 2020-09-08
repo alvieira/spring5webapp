@@ -35,34 +35,37 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
 	}
 
 	private void initData() {
+		
+		System.out.println("Started in Bootstrap");
 
-		Publisher pub1 = new Publisher("Harper Collins", "7th Avenue");
-		publisherRepository.save(pub1);
-		Publisher pub2 = new Publisher("Wrox", "Street Venus");
-		publisherRepository.save(pub2);
+		Publisher publisher = new Publisher("Harper Collins", "7th Avenue", "St. Petersburg", "FL", "123456");
+		publisherRepository.save(publisher);
 
 		// Eric
 		Author eric = new Author("Eric", "Evans");
-		Book ddd = new Book("Domain Driven Design", "1234", pub1);
+		Book ddd = new Book("Domain Driven Design", "1234", publisher);
 
 		eric.getBooks().add(ddd);
 		ddd.getAuthors().add(eric);
+		publisher.getBooks().add(ddd);
 
 		authorRepository.save(eric);
 		bookRepository.save(ddd);
 
 		// Rod
 		Author rod = new Author("Rod", "Johnson");
-		Book noEJB = new Book("J2EE Development without EJB", "23444", pub2);
+		Book noEJB = new Book("J2EE Development without EJB", "23444", publisher);
 
 		rod.getBooks().add(noEJB);
 		noEJB.getAuthors().add(rod);
 
 		authorRepository.save(rod);
-		bookRepository.save(noEJB);
+		bookRepository.save(noEJB);	
+		publisher.getBooks().add(noEJB);
 		
-		System.out.println("Started in Bootstrap");
+		System.out.println("Publisher count: " + publisherRepository.count());
 		System.out.println("Number of books: " + bookRepository.count());
+		System.out.println("Publisher Number of Books: " + publisher.getBooks().size());		
 
 	}
 
